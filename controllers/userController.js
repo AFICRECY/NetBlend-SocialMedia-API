@@ -10,6 +10,7 @@ module.exports={
   },
     getUser(req,res){
         User.find()
+        .populate("thoughts")
         .then(async(users)=>{
             const userObj = {
                 users
@@ -24,6 +25,7 @@ module.exports={
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
           .select('-__v')
+          .populate("thoughts")
           .then(async (user) =>
             !user
               ? res.status(404).json({ message: 'No user with that ID' })
@@ -42,7 +44,7 @@ module.exports={
           .then((user) =>
             !user
               ? res.status(404).json({ message: 'No such user exists' })
-              : Course.findOneAndUpdate(
+              : Thought.findOneAndUpdate(
                   { user: req.params.userId },
                   { $pull: { user: req.params.userId } },
                   { new: true }
@@ -73,9 +75,35 @@ module.exports={
           )
           .catch((err) => res.status(500).json(err));
       },
+      addFriend(req, res) {
+        User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $addToSet: { friends: req.body.friendId } },
+          { runValidators: true, new: true }
+        )
+          .then((user) =>
+            !user
+              ? res.status(404).json({ message: "No user found with that ID :(" })
+              : res.json(user)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
+      deleteFriend(req, res) {
+        User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $pull: { friends: req.params.friendId } },
+          { new: true }
+        )
+          .then((user) =>
+            !user
+              ? res.status(404).json({ message: "No User find with this ID!" })
+              : res.json(user)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
+    };
 
 
-}
 
 
 
