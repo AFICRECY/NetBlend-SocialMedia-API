@@ -26,6 +26,7 @@ module.exports={
         User.findOne({ _id: req.params.userId })
           .select('-__v')
           .populate("thoughts")
+          .populate("friends")
           .then(async (user) =>
             !user
               ? res.status(404).json({ message: 'No user with that ID' })
@@ -44,7 +45,7 @@ module.exports={
           .then((user) =>
             !user
               ? res.status(404).json({ message: 'No such user exists' })
-              : Thought.findOneAndUpdate(
+              : User.findOneAndUpdate(
                   { user: req.params.userId },
                   { $pull: { user: req.params.userId } },
                   { new: true }
