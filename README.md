@@ -26,12 +26,20 @@ MongoDB has emerged as a favored database solution among numerous social network
 
 This application brings together many different kinds of software and associated packages to create a dynamic Social Media API called “NetBlend”. NetBlend is a versatile application that empowers users to effortlessly manage their user accounts, thoughts or posts, reactions or comments, and interactions with other users. With NetBlend, users have the ability to create, read, update, and delete their own user accounts, as well as publish and manage their thoughts or posts. They can also engage with other users' thoughts through the integration of Insomnia, allowing them to fetch and leave reactions on those thoughts. Additionally, NetBlend offers a personalized experience by enabling users to conveniently add or remove other users from their network, fostering meaningful connections within the platform.This Social Media API holds all of the data for the soon to come NetBlend Social Media application.
 
+<p>&nbsp;</p>
+
+### Gif (Animation of Thought Routes)
+
+![Final-NetBlend](https://github.com/AFICRECY/NetBlend-SocialMedia-API/assets/101257805/01f19e74-bf74-4204-87bc-51b0deea070d)
+
+
+<p>&nbsp;</p>
 
 
 ### Screenshot of Functioning Web Application:
 
 
-![App In Use](/images/test-get-route-for-all-users.png)
+![App In Use](/images/Thought-Route-Pic.png)
 
 <p>&nbsp;</p>
 
